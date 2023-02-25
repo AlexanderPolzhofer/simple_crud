@@ -1,0 +1,15 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.heading {
+  display: flex;
+  gap: 5px;
+}
+
+.app-container {
+  margin: 0 auto;
+  padding: 13px;
+}
