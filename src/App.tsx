@@ -1,10 +1,23 @@
 import React from "react";
 import "./App.css";
-import { AddUserForm } from "./components/AddUserForm/AddUserForm";
+import { AddUserForm, UserType } from "./components/AddUserForm/AddUserForm";
 import { UserTable } from "./components/UserTable/UserTable";
 
-function App() {
-  const [userData, setUserData] = React.useState([{}]);
+const App = () => {
+  const [users, setUsers] = React.useState<UserType[]>([
+    { id: 0, name: "Alex", username: "lex92" },
+  ]);
+
+  const addUser = (user: UserType) => {
+    user.id = users.length;
+    setUsers([...users, user]);
+  };
+
+  const deleteUser = (id: number) => {
+    setUsers(users.filter((filteredUser) => filteredUser.id !== id));
+  };
+
+  React.useEffect(() => {}, [users]);
 
   return (
     <div className="app-container">
@@ -15,15 +28,15 @@ function App() {
       <div>
         <div>
           <h2>Add User</h2>
-          <AddUserForm userData={userData} />
+          <AddUserForm addUser={addUser} />
         </div>
         <div>
           <h2>View Users</h2>
-          <UserTable users={userData} />
+          <UserTable users={users} deleteUser={deleteUser} />
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default App;
