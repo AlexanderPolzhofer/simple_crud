@@ -14,16 +14,20 @@ export const UserTable: React.FC<UserTableProps> = ({ users }) => (
       </tr>
     </thead>
     <tbody>
-      {users.map((user) => (
-        <tr key={user.id}>
-          <td>{user.name}</td>
-          <td>{user.username}</td>
-          <td>
-            <button>Edit</button>
-            <button>Delete</button>
-          </td>
-        </tr>
-      ))}
+      {users.length > 1 ? (
+        users.map((user) => (
+          <tr key={user.id}>
+            <td>{user.name}</td>
+            <td>{user.username}</td>
+            <td>
+              <button>Edit</button>
+              <button>Delete</button>
+            </td>
+          </tr>
+        ))
+      ) : (
+        <p>No Users!</p>
+      )}
     </tbody>
   </table>
 );

@@ -4,13 +4,7 @@ import { AddUserForm } from "./components/AddUserForm/AddUserForm";
 import { UserTable } from "./components/UserTable/UserTable";
 
 function App() {
-  const [userData, setUserData] = React.useState([
-    {
-      id: "0",
-      username: "lex92",
-      name: "Alex",
-    },
-  ]);
+  const [userData, setUserData] = React.useState([{}]);
 
   return (
     <div className="app-container">
@@ -21,7 +15,7 @@ function App() {
       <div>
         <div>
           <h2>Add User</h2>
-          <AddUserForm />
+          <AddUserForm userData={userData} />
         </div>
         <div>
           <h2>View Users</h2>
