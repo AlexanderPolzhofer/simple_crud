@@ -14,6 +14,7 @@ export const initialState = { id: 0, name: "", username: "" };
 
 export const AddUserForm: React.FC<AddUserFormProps> = ({ addUser }) => {
   const [user, setUser] = React.useState<UserType>(initialState);
+  const isDisabled = !user.name || !user.username;
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -40,7 +41,7 @@ export const AddUserForm: React.FC<AddUserFormProps> = ({ addUser }) => {
         value={user.username}
         onChange={handleInputChange}
       />
-      <button disabled={!user.name || !user.username}>Add</button>
+      <button disabled={isDisabled}>Add</button>
     </form>
   );
 };

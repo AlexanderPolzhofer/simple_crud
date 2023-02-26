@@ -4,9 +4,16 @@ import { UserType } from "../AddUserForm/AddUserForm";
 interface UserTableProps {
   users: UserType[];
   deleteUser: (id: number) => void;
+  setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
+  currentUser: (user: UserType) => void;
 }
 
-export const UserTable: React.FC<UserTableProps> = ({ users, deleteUser }) => {
+export const UserTable: React.FC<UserTableProps> = ({
+  users,
+  deleteUser,
+  setIsEditing,
+  currentUser,
+}) => {
   return (
     <table>
       <thead>
@@ -23,8 +30,22 @@ export const UserTable: React.FC<UserTableProps> = ({ users, deleteUser }) => {
               <td>{user.name}</td>
               <td>{user.username}</td>
               <td>
-                <button>Edit</button>
-                <button onClick={() => deleteUser(user.id)}>Delete</button>
+                <button
+                  onClick={() => {
+                    setIsEditing(true);
+                    currentUser(user);
+                  }}
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => {
+                    deleteUser(user.id);
+                    setIsEditing(false);
+                  }}
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))
